@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration >
+	<property name="PROD_HOME" value="C:/AppLog/droneapp/logs" />
+	<appender name="droneappFileAppenderDebug"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${PROD_HOME}/droneapp.log.debug</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				 %level %d{yyyy-MM-dd HH:mm:ss} [%thread] : %class %L - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${PROD_HOME}/droneapp.log.%d{yyyy-MM-dd}.%i.debug
+                        </fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+	<appender name="droneappFileAppenderInfo"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${PROD_HOME}/droneapp.log.info</file>
+				<filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				 %level %d{yyyy-MM-dd HH:mm:ss} [%thread] : %class %L - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${PROD_HOME}/loyaltyengine.log.%d{yyyy-MM-dd}.%i.info
+                        </fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+
+	<appender name="droneappFileAppenderError"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${PROD_HOME}/droneapp.log.error</file>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				 %level %d{yyyy-MM-dd HH:mm:ss} [%thread] : %class %L - %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${PROD_HOME}/droneapp.log.%d{yyyy-MM-dd}.%i.error
+                        </fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+
+	<logger name="com.musala.droneapp" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="droneappFileAppenderDebug" />
+		<appender-ref ref="droneappFileAppenderInfo" />
+		<appender-ref ref="droneappFileAppenderError" />
+	</logger>
+	
+	
+</configuration>
